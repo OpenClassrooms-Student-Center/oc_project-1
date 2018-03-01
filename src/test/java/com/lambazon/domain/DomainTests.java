@@ -1,4 +1,4 @@
-package com.lambazon.domain;
+																																																		package com.lambazon.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
