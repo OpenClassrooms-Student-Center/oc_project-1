@@ -19,7 +19,7 @@ public class ProductService {
 		return productRepository.products();
 	}
 
-	public Product product(Integer id) {
+	public Product product(Long id) {
 		return productRepository.product(id);
 	}
 }

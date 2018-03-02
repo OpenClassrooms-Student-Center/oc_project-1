@@ -1,4 +1,4 @@
-package com.lambazon.controller;
+package com.lambazon.api;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class ProductRestController {
 	}
 
 	@GetMapping("/api/products/{id}/details")
-	public Product product	(@PathVariable Integer id, Model model) {
+	public Product product	(@PathVariable Long id, Model model) {
 		return productService.product(id);
 	}
 }

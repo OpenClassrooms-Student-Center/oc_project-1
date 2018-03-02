@@ -7,24 +7,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.lambazon.service.ProductService;
+import com.lambazon.service.CustomerService;
 
 
 @Controller
-public class ProductController {
+public class CustomerController {
 	
 	@Inject
-	private ProductService productService;
+	private CustomerService customerService;
 	
-	@GetMapping("/products")
+	@GetMapping("/customers")
 	public String products	(Model model) {
-		model.addAttribute("prods", productService.products());
-		return "products";
+		model.addAttribute("custs", customerService.customers());
+		return "customers";
 	}
 	
-	@GetMapping("/products/{id}/details")
+	@GetMapping("/customers/{id}/details")
 	public String product	(@PathVariable Long id, Model model) {
-		model.addAttribute("prod", productService.product(id));
-		return "product";
+		model.addAttribute("cust", customerService.customer(id));
+		return "customer";
 	}
 }
