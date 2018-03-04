@@ -1,0 +1,7 @@
+com.lambazon
+com.lambazon.api
+com.lambazon.controller
+com.lambazon.domain
+com.lambazon.repository
+com.lambazon.service
+com.lambazon.util
