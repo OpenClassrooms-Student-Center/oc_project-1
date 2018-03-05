@@ -4,12 +4,12 @@ public class Product {
 
 	private Long id;
 	private String name, description, details;
-	private int quantity;
+	private int inventoryQuantity;
 	private double price;
 
 	public Product(long id, int quantity, double price, String name, String description) {
 		setId(id);
-		setQuantity(quantity);
+		setInventoryQuantity(quantity);
 		setPrice(price);
 		setName(name);
 		setDescription(description);
@@ -47,15 +47,15 @@ public class Product {
 		this.details = details;
 	}
 
-	public int getQuantity() {
-		return quantity;
+	public int getInventoryQuantity() {
+		return inventoryQuantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setInventoryQuantity(int quantity) {
 		if (quantity < 0) {
 			quantity = 0;
 		}
-		this.quantity = quantity;
+		this.inventoryQuantity = quantity;
 	}
 
 	public double getPrice() {
@@ -72,7 +72,7 @@ public class Product {
 	}
 
 	public double getInventoryPrice() {
-		return getQuantity() * getPrice();
+		return getInventoryQuantity() * getPrice();
 	}
 
 	@Override

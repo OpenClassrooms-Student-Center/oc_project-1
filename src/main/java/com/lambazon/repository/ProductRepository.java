@@ -16,7 +16,7 @@ public class ProductRepository {
 	
 	private static Map<Long, Product> products = new HashMap<>();
 	
-	private static void generateProductData() {
+	private static void generateData() {
 		long id=0;
 		products.put(++id, API.createProduct(id, 10, 92.50, "Echo Dot", "(2nd Generation) - Black"));
 		products.put(++id, API.createProduct(id, 20, 9.99, "Anker 3ft / 0.9m Nylon Braided", "Tangle-Free Micro USB Cable"));
@@ -28,7 +28,7 @@ public class ProductRepository {
 	public List<Product> products() {
 		
 		if (products.isEmpty()) {
-			generateProductData();
+			generateData();
 		}
 		
 		return products.values()

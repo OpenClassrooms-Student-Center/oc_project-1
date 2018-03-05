@@ -19,6 +19,7 @@ public class ProductController {
 	@GetMapping("/products")
 	public String products	(Model model) {
 		model.addAttribute("prods", productService.products());
+		model.addAttribute("totalInventoryAmount", calculateTotalInventoryAmount());
 		return "products";
 	}
 	
@@ -26,5 +27,12 @@ public class ProductController {
 	public String product	(@PathVariable Long id, Model model) {
 		model.addAttribute("prod", productService.product(id));
 		return "product";
+	}
+	
+	private double calculateTotalInventoryAmount() {
+		return productService.products()
+							 .stream()
+							 .mapToDouble(p->p.getInventoryPrice())
+							 .sum();
 	}
 }

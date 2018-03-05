@@ -12,9 +12,9 @@ import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import com.lambazon.domain.Product;
 
 
 /**
@@ -26,31 +26,28 @@ import com.lambazon.domain.Product;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class ControllerTests {
+public class ProductControllerTests {
 	
 	@Inject
 	private TestRestTemplate restTemplate;
 
 	@Test
 	public void request_home() {
-		String body = restTemplate.getForObject("/", String.class);
-		assertThat(body).contains("Products");
+		ResponseEntity<String> response = restTemplate.getForEntity("/", String.class);
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 
 	@Test
 	public void request_detail() {
-		String body = restTemplate.getForObject("/products/1/details", String.class);
-		assertThat(body).contains("2nd Generation");
+		ResponseEntity<String> response = restTemplate.getForEntity("/products/1/details", String.class);
+		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 	
 	@Test
 	public void request_list_as_json_and_convert_to_list() {
 		String body = restTemplate.getForObject("/api/products", String.class);
-		GsonJsonParser parser = new GsonJsonParser();
-		List<Object> products = parser.parseList(body);
+		assertThat(body).contains("{\"id\":2");
 		
-		// project-0 modification will break this assertion!
-		assertThat(products.size()).isEqualTo(5);
 	}
 	
 	@Test
@@ -59,11 +56,5 @@ public class ControllerTests {
 		GsonJsonParser parser = new GsonJsonParser();
 		List<Object> products = parser.parseList("[" + body + "]");
 		assertThat(products.size()).isEqualTo(1);
-	}
-	
-	@Test
-	public void test_minimum_quantity_validation_for_product() {
-		Product p = new Product(0, 0, 0, null, null);
-		assertThat(p.getQuantity()).isEqualTo(0);
 	}
 }
