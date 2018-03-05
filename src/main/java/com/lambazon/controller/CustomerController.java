@@ -17,14 +17,15 @@ public class CustomerController {
 	private CustomerService customerService;
 	
 	@GetMapping("/customers")
-	public String products	(Model model) {
+	public String getAll(Model model) {
 		model.addAttribute("custs", customerService.customers());
 		return "customers";
 	}
 	
 	@GetMapping("/customers/{id}/details")
-	public String product	(@PathVariable Long id, Model model) {
+	public String getOne (@PathVariable Long id, Model model) {
 		model.addAttribute("cust", customerService.customer(id));
 		return "customer";
 	}
+	
 }

@@ -36,5 +36,16 @@ public class Customer {
 		return id;
 	}
 	
-	// TODO You need to write methods to allow the reading/writing of your new properties.  
+	// TODO You need to write methods to allow the reading/writing of your new properties. 
+	
+	public String getAddress() {
+		// TODO Added to complete web page.  Replace with your implementation of Address
+		return "123 Anywhere USA";
+	}
+	
+	public String getPhoneNumber() {
+		// TODO Added to complete web page.  Replace with your implementation of PhoneNumber
+		return "(555)123-4567";
+	}
+
 }

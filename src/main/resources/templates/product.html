@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
   <head>
-    <title th:text="#{detail_title}">Product</title>
+    <title th:text="#{product_detail_title}">Product</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 		
@@ -18,16 +18,16 @@
       <a class="navbar-brand" href="/" th:text="#{website}">Lambazon</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/customers">Customer</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>
+      <li class="active"><a href="/customers" th:text="#{customer_list_title}">Customer</a></li>
+      <li><a href="#">Orders</a></li>
+      <li><a href="#">Specials</a></li>
+      <li><a href="#">Contact</a></li>
     </ul>
   </div>
 </nav>
 
   <div class="container">
-      <h1 th:text="#{detail_title}">Product</h1>
+      <h1 th:text="#{product_detail_title}">Product</h1>
   <h2>Details</h2>
   <form >
   <div class="form-group">
@@ -43,16 +43,16 @@
       <input type="text" class="form-control" id="description" th:placeholder="#{description}" placeholder="Description" name="description" disabled="true" th:value="${prod.description}">
     </div>
     <div class="form-group">
-      <label for="quantity" th:text="#{quantity}">Quantity:</label>
-      <input type="number" class="form-control" id="quantity" th:placeholder="#{quantity}" placeholder="Quantity" name="quantity" disabled="true" th:value="${prod.quantity}">
+      <label for="inventoryQuantity" th:text="#{inventory_quantity}">Quantity:</label>
+      <input type="number" class="form-control" id="inventoryQuantity" th:placeholder="#{inventory_quantity}" placeholder="InventoryQuantity" name="inventoryQuantity" disabled="true" th:value="${prod.inventoryQuantity}">
     </div>
     <div class="form-group">
       <label for="price" th:text="#{price}">Price:</label>
-      <input type="number" class="form-control" id="price" th:placeholder="#{price}" placeholder="Price" name="price" disabled="true" th:value="${prod.price}">
+      <input type="number" class="form-control" id="price" th:placeholder="#{price}" placeholder="Price" name="price" disabled="true" th:value="${#numbers.formatDecimal(prod.price, 0, 'DEFAULT', 2, 'DEFAULT')}">
     </div> 
     <div class="form-group">
       <label for="inventoryPrice" th:text="#{inventory_price}">Total Inventory Price:</label>
-      <input type="number" class="form-control" id="inventoryPrice" th:placeholder="#{inventory_price}" placeholder="InventoryPrice" name="inventoryPrice" disabled="true" th:value="${prod.InventoryPrice}">
+      <input type="number" class="form-control" id="inventoryPrice" th:placeholder="#{inventory_price}" placeholder="InventoryPrice" name="inventoryPrice" disabled="true" th:value="${#numbers.formatDecimal(prod.InventoryPrice, 0, 'DEFAULT', 2, 'DEFAULT')}">
     </div>  
         <p>
       <a href="../index.html" th:href="@{/products}" th:text="#{return_to_list}">Return to list</a>

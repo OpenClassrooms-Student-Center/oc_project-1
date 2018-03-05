@@ -1,9 +1,7 @@
 package com.lambazon.util;
 
 import org.jasypt.util.password.BasicPasswordEncryptor;
-import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.jasypt.util.text.BasicTextEncryptor;
-import org.jasypt.util.text.StrongTextEncryptor;
 
 /**
  * 

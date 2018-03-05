@@ -16,6 +16,9 @@ public class EncryptionUtilityTests {
 		String encrypted = EncryptionUtility.encrypt(clearText);
 		assertNotSame(clearText, encrypted);
 		
+		out(clearText);
+		out(encrypted);
+		
 		String decrypted = EncryptionUtility.decrypt(encrypted);
 		assertEquals(clearText, decrypted);
 	}
@@ -40,5 +43,9 @@ public class EncryptionUtilityTests {
 		assertNotSame(clearText, encrypted);
 		
 		assertFalse(EncryptionUtility.checkPassword(clearText+" ", encrypted));
+	}
+	
+	private void out(String s) {
+		System.out.println(s);
 	}
 }

@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
   <head>
-    <title th:text="#{product_list_title}">Products</title>
+    <title th:text="#{customer_list_title}">Products</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 		
@@ -18,7 +18,7 @@
       <a class="navbar-brand" href="/" th:text="#{website}">Lambazon</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="/customers" th:text="#{customer_list_title}">Customers</a></li>
+      <li class="active"><a href="/customers" th:text="#{customer_list_title}">Customers</a></li>
       <li><a href="#">Orders</a></li>
       <li><a href="#">Specials</a></li>
       <li><a href="#">Contact</a></li>
@@ -28,20 +28,19 @@
 
     
   <div class="container">
-  <h1 th:text="#{product_list_title}">Products</h1>
+  <h1 th:text="#{customer_list_title}">Customers</h1>
     <table class="table">
       <tr>
-        <th th:text="#{product}">Product</th>
-        <th th:text="#{description}">Description</th>
-        <th th:text="#{details}">Details</th>
+        <th th:text="#{customer}">Customer</th>
+        <th th:text="#{address}">Address</th>
+        <th th:text="#{phoneNumber}">Phone Number</th>
       </tr>
-      <tr th:each="prod : ${prods}">
-        <td th:text="${prod.name}">Name</td>
-        <td th:text="${prod.description}">Description</td>
-        <td><a href="details.html" th:href="@{/products/{id}/details(id=${prod.id})}" th:text="#{id} + ${prod.id}">Details</a></td>
+      <tr th:each="cust : ${custs}">
+        <td th:text="${cust.name}">Name</td>
+        <td th:text="${cust.address}">Address</td>
+        <td th:text="${cust.phoneNumber}">Phone Number</td>
       </tr>
     </table>
-    <div th:text="#{totalInventoryAmount} +${#numbers.formatDecimal(totalInventoryAmount, 0, 'DEFAULT', 2, 'DEFAULT')}"> Total Inventory Amount : 500.00 </div>
 </div>
   </body>
 

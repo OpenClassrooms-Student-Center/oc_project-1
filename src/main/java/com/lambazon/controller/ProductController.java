@@ -17,14 +17,22 @@ public class ProductController {
 	private ProductService productService;
 	
 	@GetMapping("/products")
-	public String products	(Model model) {
+	public String getAll(Model model) {
 		model.addAttribute("prods", productService.products());
+		model.addAttribute("totalInventoryAmount", calculateTotalInventoryAmount());
 		return "products";
 	}
 	
 	@GetMapping("/products/{id}/details")
-	public String product	(@PathVariable Long id, Model model) {
+	public String getOne(@PathVariable Long id, Model model) {
 		model.addAttribute("prod", productService.product(id));
 		return "product";
+	}
+	
+	private double calculateTotalInventoryAmount() {
+		return productService.products()
+							 .stream()
+							 .mapToDouble(p->p.getInventoryPrice())
+							 .sum();
 	}
 }
