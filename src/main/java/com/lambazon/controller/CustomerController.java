@@ -11,14 +11,14 @@ import com.lambazon.service.CustomerService;
 
 
 @Controller
-public class CustomerController {
+public class CustomerController { 
 	
 	@Inject
 	private CustomerService customerService;
 	
 	@GetMapping("/customers")
 	public String getAll(Model model) {
-		model.addAttribute("custs", customerService.customers());
+		model.addAttribute("custs", <TODO>); 
 		return "customers";
 	}
 	

@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title th:text="#{ouch}">Ouch!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+		
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />	
+	<link href='https://fonts.googleapis.com/css?family=Exo' rel='stylesheet' type='text/css' />
+
+  </head>
+
+  <body>
+  
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/" th:text="#{website}">Lambazon</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/customers" th:text="#{customer_list_title}">Customers</a></li>
+      <li><a href="#">Orders</a></li>
+      <li><a href="#">Specials</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+    
+  <div class="container">
+  <h1 th:text="#{ouch}">Ouch!</h1>
+  <h3 th:text="#{ouch_message}">Ouch!</h3>
+  <h4 th:text="${clue}">Clue!</h4>
+
+</div>
+  </body>
+
+</html>
