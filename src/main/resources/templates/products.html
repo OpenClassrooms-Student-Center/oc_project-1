@@ -19,15 +19,9 @@
     </div>
     <ul class="nav navbar-nav">
       <li><a href="/customers" th:text="#{customer_list_title}">Customers</a></li>
-<<<<<<< HEAD
       <li><a href="#">Orders</a></li>
       <li><a href="#">Specials</a></li>
       <li><a href="#">Contact</a></li>
-=======
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>
->>>>>>> refs/remotes/origin/master
     </ul>
   </div>
 </nav>
@@ -47,11 +41,7 @@
         <td><a href="details.html" th:href="@{/products/{id}/details(id=${prod.id})}" th:text="#{id} + ${prod.id}">Details</a></td>
       </tr>
     </table>
-<<<<<<< HEAD
     <div th:text="#{totalInventoryAmount} +${#numbers.formatDecimal(totalInventoryAmount, 0, 'DEFAULT', 2, 'DEFAULT')}"> Total Inventory Amount : 500.00 </div>
-=======
-    <div th:text="#{totalInventoryAmount} + ${totalInventoryAmount}"> Total Inventory Amount : 500.00 </div>
->>>>>>> refs/remotes/origin/master
 </div>
   </body>
 
