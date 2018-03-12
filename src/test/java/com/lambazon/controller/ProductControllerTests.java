@@ -18,10 +18,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 /**
-<<<<<<< HEAD
-=======
- * 
->>>>>>> refs/remotes/origin/master
  * @author stanlick
  *
  *   This class will demonstrate Integration Testing once learner has advanced to the TDD phase of the Java EE learning path
