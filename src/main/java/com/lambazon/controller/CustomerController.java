@@ -18,7 +18,7 @@ public class CustomerController {
 	
 	@GetMapping("/customers")
 	public String getAll(Model model) {
-		model.addAttribute("custs", <TODO>); 
+		model.addAttribute("custs", "<TODO>"); 
 		return "customers";
 	}
 	
