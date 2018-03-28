@@ -1,10 +1,23 @@
 package com.lambazon;
 
+import javax.inject.Inject;
+
+import org.springframework.context.annotation.Configuration;
+
 import com.lambazon.domain.Customer;
 import com.lambazon.domain.Order;
 import com.lambazon.domain.Product;
+import com.lambazon.repository.CustomerRepository;
+import com.lambazon.repository.ProductRepository;
 
+@Configuration
 public class API {
+	
+	@Inject
+	private CustomerRepository customerRepository;
+	
+	@Inject
+	private ProductRepository productRepository;
 
 	/**
 	 * 
@@ -13,8 +26,9 @@ public class API {
 	 * @param name
 	 * @return Customer
 	 */
-	public static Customer createCustomer(String name) {
-		return new Customer(name);
+	public Customer createCustomer(String name) {
+		Customer customer = new Customer(name);
+		return customerRepository.create(customer);
 	}
 
 	/**
@@ -28,20 +42,28 @@ public class API {
 	 * @param description
 	 * @return Product
 	 */
-	public static Product createProduct(long id, int quantity, double price, String name, String description) {
-		return new Product(id, quantity, price, name, description);
+	public Product createProduct(int quantity, double price, String name, String description) {
+		Product  product = new Product(quantity, price, name, description);
+		return productRepository.create(product);
 	}
 
 	/**
 	 * 
-	 * Create an Order given argument
+	 * Create an Order given argument  <TODO>Order persistence is pending</TODO>
 	 * 
 	 * @param customer
 	 * @return Order
 	 */
 
-	public static Order createOrder(Customer customer) {
+	public Order createOrder(Customer customer) {
 		return new Order(customer);
 	}
-
+	
+	
+	// Initialize database
+	public void deleteAll() {
+		customerRepository.deleteAll();
+		productRepository.deleteAll();
+		
+	}
 }

@@ -7,8 +7,11 @@ public class Product {
 	private int inventoryQuantity;
 	private double price;
 
-	public Product(long id, int quantity, double price, String name, String description) {
-		setId(id);
+	public Product() {
+		super();
+	}
+	
+	public Product(int quantity, double price, String name, String description) {
 		setInventoryQuantity(quantity);
 		setPrice(price);
 		setName(name);

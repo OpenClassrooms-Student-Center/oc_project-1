@@ -21,9 +21,9 @@ public class OrderTests {
 	
 	@Before
 	public void beforeEachTest() {
-		customer = API.createCustomer("Tesla Motors");
-		aProduct = API.createProduct(1, 10, 92.50, "Name", "Description");
-		bProduct = API.createProduct(2, 20, 50.00, "Another Name", "Another Description");
+		customer = new Customer("Tesla Motors");
+		aProduct = new Product(10, 92.50, "Name", "Description");
+		bProduct = new Product(20, 50.00, "Another Name", "Another Description");
 		
 		aOrderedProduct = new OrderedProduct(aProduct, 10);
 		bOrderedProduct = new OrderedProduct(bProduct, 20);
@@ -34,14 +34,14 @@ public class OrderTests {
 	
 	@Test
 	public void create_order_and_validate_customer() {
-		Order o = API.createOrder(customer);
+		Order o = new Order(customer);
 		assertThat(o.getCustomer().getName()).isEqualTo("Tesla Motors");
 	}
 
 	
 	@Test
 	public void create_order_and_add_two_products() {
-		Order o = API.createOrder(customer);
+		Order o = new Order(customer);
 		o.addProduct(aOrderedProduct);
 		o.addProduct(bOrderedProduct);
 		assertThat(o.getOrderedProducts()).contains(aOrderedProduct, bOrderedProduct);
@@ -49,7 +49,7 @@ public class OrderTests {
 	
 	@Test
 	public void create_order_and_add_two_products_then_remove_product() {
-		Order o = API.createOrder(customer);
+		Order o = new Order(customer);
 		o.addProduct(aOrderedProduct);
 		o.addProduct(bOrderedProduct);
 		o.remove(aOrderedProduct);
@@ -59,7 +59,7 @@ public class OrderTests {
 
 	@Test
 	public void create_order_and_add_two_products_then_request_total_price() {
-		Order o = API.createOrder(customer);
+		Order o = new Order(customer);
 		o.addProduct(aOrderedProduct);
 		o.addProduct(bOrderedProduct);
 										//10*92.50 =  925
@@ -69,7 +69,7 @@ public class OrderTests {
 	
 	@Test
 	public void create_order_and_add_two_products_then_remove_product_then_request_total_price() {
-		Order o = API.createOrder(customer);
+		Order o = new Order(customer);
 		o.addProduct(aOrderedProduct);
 		o.addProduct(bOrderedProduct);
 		o.remove(aOrderedProduct);
@@ -79,7 +79,7 @@ public class OrderTests {
 	
 	@Test
 	public void create_order_and_attemp_to_add_same_product_second_time_to_order_set() {
-		Order o = API.createOrder(customer);
+		Order o = new Order(customer);
 
 		assertThat(o.addProduct(aOrderedProduct)).isTrue();
 		assertThat(o.addProduct(aOrderedProduct)).isFalse();

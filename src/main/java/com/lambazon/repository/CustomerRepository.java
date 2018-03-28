@@ -1,47 +1,70 @@
 package com.lambazon.repository;
 
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
-import java.util.stream.Collectors;
 
+import javax.inject.Inject;
+
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import com.lambazon.API;
 import com.lambazon.domain.Customer;
+
+/**
+ * 
+ * create table Customer(id bigint auto_increment, name varchar(255));
+ * 
+ * @author stanlick
+ *
+ */
 
 @Repository
 public class CustomerRepository {
-	
-	private static List<Customer> customers = new ArrayList<>();
 
-	private static void generateData() {
-		customers.add(API.createCustomer("Scott Stanlick"));
-		customers.add(API.createCustomer("Donald Trump"));
-	}
-	
-	
+	@Inject
+    private JdbcTemplate jdbcTemplate;
+
 	public List<Customer> customers() {
-		
-		if (customers.isEmpty()) {
-			generateData();
-		}
-		
-		return customers
-				.stream()
-				.sorted(Comparator.comparing(Customer::getName))
-				.collect(Collectors.toList());
+		RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<Customer>(Customer.class);
+		return jdbcTemplate.query("select * from Customer", rowMapper);
 	}
 	
 	public Customer customer(Long id) {
-		return customers.stream()
-						.filter(c->c.getId()==id)
-						.findFirst()
-						.get();
-	}
-	
-	public Customer save(Customer customer) {
-		return customers.set(customers.indexOf(customer), customer);
+		String sql = "SELECT * from customer WHERE id=?";
+		RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<Customer>(Customer.class);
+	    return jdbcTemplate.queryForObject(sql, rowMapper, id);
 	}
 
+	public Customer create(Customer customer) {
+		KeyHolder holder = new GeneratedKeyHolder();
+		jdbcTemplate.update(conn -> {
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO customer (name) values (?)", Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, customer.getName());
+			return ps;
+			} , holder);
+
+		return customer(holder.getKey().longValue());
+	}
+	
+	public void update(Customer customer) {
+		String sql = "UPDATE customer SET name=? WHERE id=?";
+	    jdbcTemplate.update(sql, customer.getName(), customer.getId());
+	}
+	public void delete(Long id) {
+		String sql = "DELETE from customer WHERE id=?";
+	    jdbcTemplate.update(sql, id);
+	}
+	
+	public void deleteAll() {
+		String sql = "DELETE from customer";
+	    jdbcTemplate.update(sql);
+	}
 }

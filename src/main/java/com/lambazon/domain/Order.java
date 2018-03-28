@@ -6,13 +6,21 @@ import java.util.HashSet;
 
 public class Order {
 	
-	private Long id = System.nanoTime();
+	private Long id;
 	private LocalDate createDate = LocalDate.now();
 	private Customer customer;
 	private HashSet<OrderedProduct> orderedProducts = new HashSet<>();
 	
 	public Order(Customer customer) {
 		this.customer=customer;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Customer getCustomer() {
@@ -37,4 +45,5 @@ public class Order {
 							  .mapToDouble(o-> o.getOrderedQuantity()*o.getProduct().getPrice())
 							  .sum();		
 	}
+
 }

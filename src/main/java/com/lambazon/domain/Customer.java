@@ -5,7 +5,7 @@ public class Customer {
 	//----------
 	//Properties
 	//----------
-	private Long id = System.nanoTime();
+	private Long id;
 	private String name;
 	
 	// TODO You need to model and implement the following properties
@@ -21,6 +21,10 @@ public class Customer {
 	//------------
 	//Constructors
 	//------------
+	public Customer() {
+		super();
+	}
+	
 	public Customer(String name) {
 		this.name=name;
 	}
@@ -29,9 +33,16 @@ public class Customer {
 	//----------
 	//Behaviors
 	//----------
+	public void setName(String name) {
+		this.name=name;
+	}
 	public String getName() {
 		return name;
 	}
+	public void setId(Long id) {
+		this.id=id;;
+	}
+
 	public Long getId() {
 		return id;
 	}

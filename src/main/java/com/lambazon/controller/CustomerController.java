@@ -9,23 +9,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.lambazon.service.CustomerService;
 
-
 @Controller
-public class CustomerController { 
-	
+public class CustomerController {
+
 	@Inject
 	private CustomerService customerService;
-	
-	@GetMapping("/customers")
-	public String getAll(Model model) {
-		model.addAttribute("custs", "<TODO>"); 
-		return "customers";
-	}
-	
-	@GetMapping("/customers/{id}/details")
-	public String getOne (@PathVariable Long id, Model model) {
+
+	@GetMapping("/customers/{id}")
+	public String getById(@PathVariable Long id, Model model) {
 		model.addAttribute("cust", customerService.customer(id));
 		return "customer";
 	}
-	
+
+	@GetMapping("/customers")
+	public String getAll(Model model) {
+		model.addAttribute("custs", customerService.customers());
+		return "customers";
+	}
+
 }
