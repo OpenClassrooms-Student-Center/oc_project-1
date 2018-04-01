@@ -5,8 +5,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.lambazon.Application;
 import com.lambazon.domain.Customer;
 import com.lambazon.repository.CustomerRepository;
 
@@ -16,9 +19,12 @@ public class CustomerService {
 	@Inject
 	private CustomerRepository repository;
 	
+	private static final Logger log = LoggerFactory.getLogger(Application.class);
+	
 	public List<Customer> customers() {
 		List<Customer> target = new ArrayList<>();
 		repository.findAll().iterator().forEachRemaining(target::add);
+		log.info("returning " + target.size() + " Customers from datastore");
 		return target;
 	}
 
