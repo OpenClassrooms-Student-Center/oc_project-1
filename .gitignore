@@ -11,3 +11,4 @@ target/
 mvnw
 mvnw.cmd
 
+/database-schema-script

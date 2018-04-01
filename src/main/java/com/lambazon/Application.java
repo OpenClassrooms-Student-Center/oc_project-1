@@ -5,6 +5,8 @@ import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -14,10 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-import com.lambazon.controller.CustomerController;
 import com.lambazon.domain.Customer;
-import com.lambazon.repository.CustomerRepository;
-import com.lambazon.repository.ProductRepository;
 
 /**
  * 
@@ -27,6 +26,8 @@ import com.lambazon.repository.ProductRepository;
 
 @SpringBootApplication
 public class Application implements  WebMvcConfigurer{
+	
+	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -64,13 +65,13 @@ public class Application implements  WebMvcConfigurer{
 	   
 	// Initialize database
 			   
-			   @Inject
+			   @Inject 
 			   API api;
 			   
 				@PostConstruct
 				public void init() {
 					api.deleteAll();
-					
+					log.info("initialized persistent storage by removing all Customer and Products ");
 					// Customers
 					Customer customer = api.createCustomer("Donald Trump");
 					//customer.setAddress(...);

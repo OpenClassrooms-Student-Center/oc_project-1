@@ -1,5 +1,6 @@
 package com.lambazon.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -13,29 +14,31 @@ import com.lambazon.repository.CustomerRepository;
 public class CustomerService {
 	
 	@Inject
-	private CustomerRepository customerRepository;
+	private CustomerRepository repository;
 	
 	public List<Customer> customers() {
-		return customerRepository.customers();
+		List<Customer> target = new ArrayList<>();
+		repository.findAll().iterator().forEachRemaining(target::add);
+		return target;
 	}
 
 	public Customer customer(Long id) {
-		return customerRepository.customer(id);
+		return repository.findById(id).get();
 	}
 	
 	public Customer create(Customer customer) {
-		return customerRepository.create(customer);
+		return repository.save(customer);
 	}
 	
 	public void update(Customer customer) {
-		customerRepository.update(customer);
+		repository.save(customer);
 	}
 	
 	public void delete(Long id) {
-		customerRepository.delete(id);
+		repository.deleteById(id);
 	}
 
 	public void deleteAll() {
-		customerRepository.deleteAll();
+		repository.deleteAll();
 	}
 }

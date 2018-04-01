@@ -5,8 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.lambazon.API;
-
 
 public class OrderTests {
 	
@@ -27,8 +25,6 @@ public class OrderTests {
 		
 		aOrderedProduct = new OrderedProduct(aProduct, 10);
 		bOrderedProduct = new OrderedProduct(bProduct, 20);
-		
-		
 	}
 	
 	

@@ -8,6 +8,7 @@ import com.lambazon.domain.Customer;
 import com.lambazon.domain.Order;
 import com.lambazon.domain.Product;
 import com.lambazon.repository.CustomerRepository;
+import com.lambazon.repository.OrderRepository;
 import com.lambazon.repository.ProductRepository;
 
 @Configuration
@@ -18,6 +19,9 @@ public class API {
 	
 	@Inject
 	private ProductRepository productRepository;
+	
+	@Inject
+	private OrderRepository orderRepository;
 
 	/**
 	 * 
@@ -28,7 +32,7 @@ public class API {
 	 */
 	public Customer createCustomer(String name) {
 		Customer customer = new Customer(name);
-		return customerRepository.create(customer);
+		return customerRepository.save(customer);
 	}
 
 	/**
@@ -44,19 +48,21 @@ public class API {
 	 */
 	public Product createProduct(int quantity, double price, String name, String description) {
 		Product  product = new Product(quantity, price, name, description);
-		return productRepository.create(product);
+		return productRepository.save(product);
 	}
 
 	/**
 	 * 
-	 * Create an Order given argument  <TODO>Order persistence is pending</TODO>
+	 * Create an Order given argument
 	 * 
 	 * @param customer
 	 * @return Order
 	 */
 
 	public Order createOrder(Customer customer) {
-		return new Order(customer);
+		Order order = new Order(customer);
+		return orderRepository.save(order);
+		
 	}
 	
 	

@@ -1,5 +1,6 @@
 package com.lambazon.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -13,13 +14,15 @@ import com.lambazon.repository.ProductRepository;
 public class ProductService {
 	
 	@Inject
-	private ProductRepository productRepository;
+	private ProductRepository repository;
 	
 	public List<Product> products() {
-		return productRepository.products();
+		List<Product> target = new ArrayList<>();
+		repository.findAll().iterator().forEachRemaining(target::add);
+		return target;
 	}
 
 	public Product product(Long id) {
-		return productRepository.product(id);
+		return repository.findById(id).get();
 	}
 }
