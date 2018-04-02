@@ -5,9 +5,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.lambazon.API;
+
 
 public class OrderTests {
-	
 	
 	private Customer customer;
 	private Product aProduct;

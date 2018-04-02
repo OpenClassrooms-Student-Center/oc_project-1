@@ -24,7 +24,7 @@ public class CustomerService {
 	public List<Customer> customers() {
 		List<Customer> target = new ArrayList<>();
 		repository.findAll().iterator().forEachRemaining(target::add);
-		log.info("returning " + target.size() + " Customers from datastore");
+		log.info("OC-returning " + target.size() + " Customers from datastore");
 		return target;
 	}
 

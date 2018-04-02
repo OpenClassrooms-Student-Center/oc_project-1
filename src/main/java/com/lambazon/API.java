@@ -34,6 +34,17 @@ public class API {
 		Customer customer = new Customer(name);
 		return customerRepository.save(customer);
 	}
+	
+	/**
+	 * 
+	 * Update a Customer
+	 * 
+	 * @param Customer
+	 * @return Customer
+	 */
+	public Customer updateCustomer(Customer customer) {
+		return customerRepository.save(customer);
+	}
 
 	/**
 	 * 
@@ -70,6 +81,6 @@ public class API {
 	public void deleteAll() {
 		customerRepository.deleteAll();
 		productRepository.deleteAll();
-		
 	}
+	
 }

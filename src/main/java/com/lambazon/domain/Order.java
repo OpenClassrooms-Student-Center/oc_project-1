@@ -18,6 +18,7 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	
 	private LocalDate createDate = LocalDate.now();
 	
 	@OneToOne

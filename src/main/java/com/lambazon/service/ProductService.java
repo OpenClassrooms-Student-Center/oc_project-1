@@ -24,7 +24,7 @@ public class ProductService {
 	public List<Product> products() {
 		List<Product> target = new ArrayList<>();
 		repository.findAll().iterator().forEachRemaining(target::add);
-		log.info("returning " + target.size() + " Products from datastore");
+		log.info("OC-returning " + target.size() + " Products from datastore");
 		return target;
 	}
 

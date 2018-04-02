@@ -23,7 +23,7 @@ public class CustomerController {
 
 	@GetMapping("/customers")
 	public String getAll(Model model) {
-		model.addAttribute("custs", customerService.customers());
+		//model.addAttribute("custs", "TODO");
 		return "customers";
 	}
 
